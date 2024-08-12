@@ -7,27 +7,24 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.quanlyguixe.screen.main.home.HomeFragment"
+        android:name="com.example.quanlyguixe.screen.home.HomeFragment"
         android:label="@string/nav_home_title"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_nav_home_to_nav_list_employee"
             app:destination="@id/nav_list_employee" />
         <action
-            android:id="@+id/action_nav_home_to_nav_list_shift_manager"
-            app:destination="@id/nav_list_shift_manager" />
+            android:id="@+id/action_nav_home_to_checkInOutVehicleFragment"
+            app:destination="@id/checkInOutVehicleFragment" />
         <action
-            android:id="@+id/action_nav_home_to_nav_list_tickets"
-            app:destination="@id/nav_list_tickets" />
+            android:id="@+id/action_nav_home_to_revenueReportFragment"
+            app:destination="@id/revenueReportFragment" />
         <action
-            android:id="@+id/action_nav_home_to_nav_list_parking_lots"
-            app:destination="@id/nav_list_parking_lots" />
+            android:id="@+id/action_nav_home_to_ticketsFragment"
+            app:destination="@id/ticketsFragment" />
         <action
-            android:id="@+id/action_nav_home_to_nav_reports_detail"
-            app:destination="@id/nav_reports_detail" />
-        <action
-            android:id="@+id/action_nav_home_to_nav_checkin_checkout_vehicle"
-            app:destination="@id/nav_checkin_checkout_vehicle" />
+            android:id="@+id/action_nav_home_to_parkingLotsFragment"
+            app:destination="@id/parkingLotsFragment" />
     </fragment>
 
     <fragment
@@ -35,84 +32,27 @@
         android:name="com.example.quanlyguixe.screen.employee.ListEmployeeFragment"
         android:label="@string/nav_list_employee_title"
         tools:layout="@layout/fragment_list_employee" >
-        <action
-            android:id="@+id/action_nav_list_employee_to_nav_add_update_employee"
-            app:destination="@id/nav_add_update_employee" />
     </fragment>
-
     <fragment
-        android:id="@+id/nav_list_shift_manager"
-        android:name="com.nhom3.quanlyguixe.screens.shiftmanager.ListShiftManagerFragment"
-        android:label="@string/nav_list_shift_manager_title"
-        tools:layout="@layout/fragment_list_shift_manager" />
-
+        android:id="@+id/checkInOutVehicleFragment"
+        android:name="com.example.quanlyguixe.screen.check_in_out_vehicle.CheckInOutVehicleFragment"
+        android:label="fragment_check_in_out_vehicle"
+        tools:layout="@layout/fragment_check_in_out_vehicle" />
     <fragment
-        android:id="@+id/nav_list_tickets"
-        android:name="com.nhom3.quanlyguixe.screens.tickets.ListTicketFragment"
-        android:label="@string/nav_list_ticket_title"
-        tools:layout="@layout/fragment_list_tickets" >
-
-        <action
-            android:id="@+id/action_nav_list_tickets_to_nav_add_update_tickets"
-            app:destination="@id/nav_add_update_tickets" />
-    </fragment>
-
+        android:id="@+id/parkingLotsFragment"
+        android:name="com.example.quanlyguixe.screen.parking_lots.ParkingLotsFragment"
+        android:label="fragment_parking_lots"
+        tools:layout="@layout/fragment_parking_lots" />
     <fragment
-        android:id="@+id/nav_list_parking_lots"
-        android:name="com.nhom3.quanlyguixe.screens.parkinglots.ListParkingLotsFragment"
-        android:label="@string/nav_list_parking_lots_title"
-        tools:layout="@layout/fragment_list_parking_lots" >
-        <action
-            android:id="@+id/action_nav_list_parking_lots_to_nav_add_update_parking_slot"
-            app:destination="@id/nav_add_update_parking_slot" />
-    </fragment>
-
+        android:id="@+id/revenueReportFragment"
+        android:name="com.example.quanlyguixe.screen.revenue_report.RevenueReportFragment"
+        android:label="fragment_revenue_report"
+        tools:layout="@layout/fragment_revenue_report" />
     <fragment
-        android:id="@+id/nav_reports_detail"
-        android:name="com.nhom3.quanlyguixe.screens.reports.ReportDetailFragment"
-        android:label="@string/nav_reports_detail_title"
-        tools:layout="@layout/fragment_report_detail" />
+        android:id="@+id/ticketsFragment"
+        android:name="com.example.quanlyguixe.screen.tickets.TicketsFragment"
+        android:label="fragment_tickets"
+        tools:layout="@layout/fragment_tickets" />
 
-    <fragment
-        android:id="@+id/nav_add_update_tickets"
-        android:name="com.nhom3.quanlyguixe.screens.tickets.AddUpdateTicketFragment"
-        tools:layout="@layout/fragment_add_update_ticket"
-        android:label="Thêm vé xe" />
 
-    <fragment
-        android:id="@+id/nav_add_update_employee"
-        android:name="com.example.quanlyguixe.screen.employee.AddUpdateEmployeeFragment"
-        tools:layout="@layout/fragment_add_update_employee"
-        android:label="Thêm nhân viên" />
-
-    <fragment
-        android:id="@+id/nav_add_update_parking_slot"
-        android:name="com.nhom3.quanlyguixe.screens.parkinglots.AddUpdateParkingLotFragment"
-        tools:layout="@layout/fragment_add_update_parking_lots"
-        android:label="Thêm nhà xe" />
-
-    <fragment
-        android:id="@+id/nav_checkin_checkout_vehicle"
-        tools:layout="@layout/fragment_check_in_out_vehicle"
-        android:name="com.nhom3.quanlyguixe.screens.checkinoutvehicle.CheckinCheckOutVehicleFragment"
-        android:label="@string/nav_check_in_out_vehicle_title" >
-        <action
-            android:id="@+id/action_nav_checkin_checkout_vehicle_to_nav_checkin_vehicle"
-            app:destination="@id/nav_checkin_vehicle" />
-        <action
-            android:id="@+id/action_nav_checkin_checkout_vehicle_to_nav_checkout_vehicle"
-            app:destination="@id/nav_checkout_vehicle" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/nav_checkin_vehicle"
-        tools:layout="@layout/fragment_check_in_vehicle"
-        android:name="com.nhom3.quanlyguixe.screens.checkinoutvehicle.CheckinVehicleFragment"
-        android:label="@string/nav_check_in_vehicle_title" />
-
-    <fragment
-        android:id="@+id/nav_checkout_vehicle"
-        tools:layout="@layout/fragment_check_out_vehicle"
-        android:name="com.nhom3.quanlyguixe.screens.checkinoutvehicle.CheckoutVehicleFragment"
-        android:label="@string/nav_check_out_vehicle_title" />
 </navigation>

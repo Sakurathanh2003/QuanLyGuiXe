@@ -13,6 +13,7 @@
     <string name="nav_home_title">Trang chủ</string>
     <string name="nav_list_employee_title">Nhân viên</string>
     <string name="nav_list_shift_manager_title">Ca trực</string>
+    <string name="nav_list_check_in_out_vehicle_title">Xe vào/ra</string>
     <string name="nav_list_ticket_title">Vé xe</string>
     <string name="nav_list_parking_lots_title">Bãi đỗ xe</string>
     <string name="nav_reports_detail_title">Báo cáo doanh thu\n</string>

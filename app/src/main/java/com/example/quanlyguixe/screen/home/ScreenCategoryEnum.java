@@ -1,4 +1,4 @@
-package com.example.quanlyguixe.screen.main.home;
+package com.example.quanlyguixe.screen.home;
 
 public enum ScreenCategoryEnum {
     EMPLOYEE_SCREEN,
