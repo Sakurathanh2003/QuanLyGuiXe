@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 new AppBarConfiguration.Builder(
                         R.id.nav_home,
                         R.id.nav_list_employee,
-                        R.id.nav_list_shift_manager,
+                        R.id.nav_check_in_out_vehicle_title,
                         R.id.nav_list_tickets,
                         R.id.nav_list_parking_lots,
                         R.id.nav_reports_detail
@@ -90,19 +90,22 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             navController.popBackStack(R.id.nav_home, false);
 
             int id1 = item.getItemId();
-            if(R.id.nav_reports_detail == id1){
-                navController.navigate(R.id.action_nav_home_to_nav_reports_detail);
-            }else if(R.id.nav_list_tickets == id1){
-                navController.navigate(R.id.action_nav_home_to_nav_list_tickets);
+            if(R.id.nav_check_in_out_vehicle_title == id1){
+                navController.navigate(R.id.action_nav_home_to_checkInOutVehicleFragment);
+            }else if(R.id.nav_reports_detail == id1){
+                navController.navigate(R.id.action_nav_home_to_revenueReportFragment);
+            } else if(R.id.nav_list_tickets == id1){
+                navController.navigate(R.id.action_nav_home_to_ticketsFragment);
             }else if(R.id.nav_list_employee == id1){
                 navController.navigate(R.id.action_nav_home_to_nav_list_employee);
             }else if(R.id.nav_list_parking_lots == id1){
-                navController.navigate(R.id.action_nav_home_to_nav_list_parking_lots);
-            }else if(R.id.nav_list_shift_manager == id1){
-                navController.navigate(R.id.action_nav_home_to_nav_list_shift_manager);
-            }else if(R.id.nav_checkin_checkout_vehicle == id1){
-                navController.navigate(R.id.action_nav_home_to_nav_checkin_checkout_vehicle);
+                navController.navigate(R.id.action_nav_home_to_parkingLotsFragment);
             }
+//            else if(R.id.nav_list_shift_manager == id1){
+//                navController.navigate(R.id.action_nav_home_to_nav_list_shift_manager);
+//            }else if(R.id.nav_checkin_checkout_vehicle == id1){
+//                navController.navigate(R.id.action_nav_home_to_nav_checkin_checkout_vehicle);
+//            }
 
             viewBinding.drawerLayout.closeDrawers();
             return true;

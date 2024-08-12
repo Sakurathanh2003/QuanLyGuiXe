@@ -1,4 +1,4 @@
-package com.example.quanlyguixe.screen.main.home;
+package com.example.quanlyguixe.screen.home;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;

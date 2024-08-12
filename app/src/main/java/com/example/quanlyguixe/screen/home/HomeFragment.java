@@ -1,4 +1,4 @@
-package com.example.quanlyguixe.screen.main.home;
+package com.example.quanlyguixe.screen.home;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -32,22 +32,22 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
 
             switch (item.getScreenCategory()) {
                 case REPORT_SCREEN:
-                    navController.navigate(R.id.action_nav_home_to_nav_reports_detail);
+                    navController.navigate(R.id.action_nav_home_to_revenueReportFragment);
                     break;
                 case TICKET_SCREEN:
-                    navController.navigate(R.id.action_nav_home_to_nav_list_tickets);
+                    navController.navigate(R.id.action_nav_home_to_ticketsFragment);
                     break;
                 case EMPLOYEE_SCREEN:
                     navController.navigate(R.id.action_nav_home_to_nav_list_employee);
                     break;
                 case PARKING_LOTS_SCREEN:
-                    navController.navigate(R.id.action_nav_home_to_nav_list_parking_lots);
+                    navController.navigate(R.id.action_nav_home_to_parkingLotsFragment);
                     break;
                 case SHIFT_MANAGER_SCREEN:
-                    navController.navigate(R.id.action_nav_home_to_nav_list_shift_manager);
+                    //navController.navigate(R.id.action_nav_home_to_nav_list_shift_manager);
                     break;
                 case CHECK_IN_OUT_VEHICLE:
-                    navController.navigate(R.id.action_nav_home_to_nav_checkin_checkout_vehicle);
+                    navController.navigate(R.id.action_nav_home_to_checkInOutVehicleFragment);
                     break;
                 default:
                     break;

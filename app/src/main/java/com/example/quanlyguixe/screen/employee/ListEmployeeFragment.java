@@ -51,7 +51,7 @@ public class ListEmployeeFragment extends BaseFragment<FragmentListEmployeeBindi
     @Override
     protected void addEvent() {
         viewBinding.buttonAddEmployee.setOnClickListener(view -> {
-            navController.navigate(R.id.action_nav_list_employee_to_nav_add_update_employee);
+//            navController.navigate(R.id.action_nav_list_employee_to_nav_add_update_employee);
         });
 
         viewBinding.recyclerViewEmployees.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -79,8 +79,8 @@ public class ListEmployeeFragment extends BaseFragment<FragmentListEmployeeBindi
                             Bundle bundle = new Bundle();
                             bundle.putBoolean(Constant.KEY_BUNDLE_IS_UPDATE, true);
                             bundle.putParcelable(Constant.KEY_BUNDLE_EMPLOYEE, item);
-                            navController.navigate(
-                                    R.id.action_nav_list_employee_to_nav_add_update_employee, bundle);
+//                            navController.navigate(
+//                                    R.id.action_nav_list_employee_to_nav_add_update_employee, bundle);
                         }).show();
             }
 
