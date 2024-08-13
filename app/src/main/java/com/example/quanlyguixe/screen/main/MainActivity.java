@@ -92,19 +92,23 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         viewBinding.navView.setNavigationItemSelectedListener(item -> {
             navController.popBackStack(R.id.nav_home, false);
 
-            int id1 = item.getItemId();
-            if(R.id.nav_check_in_out_vehicle_title == id1){
+            int id = item.getItemId();
+
+
+
+            if (id == R.id.nav_check_in_out_vehicle_title) {
                 navController.navigate(R.id.action_nav_home_to_checkInOutVehicleFragment);
-            }else if(R.id.nav_reports_detail == id1){
+            } else if (id == R.id.nav_reports_detail) {
                 navController.navigate(R.id.action_nav_home_to_revenueReportFragment);
-            } else if(R.id.nav_list_tickets == id1){
+            } else if (id == R.id.nav_list_tickets) {
                 navController.navigate(R.id.action_nav_home_to_ticketsFragment);
-            }else if(R.id.nav_list_employee == id1){
+            } else if (id == R.id.nav_list_employee){
                 navController.navigate(R.id.action_nav_home_to_nav_list_employee);
-            }else if(R.id.nav_list_parking_lots == id1){
+            } else if (id == R.id.nav_list_parking_lots){
                 navController.navigate(R.id.action_nav_home_to_parkingLotsFragment);
             }
-//            else if(R.id.nav_list_shift_manager == id1){
+
+ //           else if(R.id.nav_list_shift_manager == id1){
 //                navController.navigate(R.id.action_nav_home_to_nav_list_shift_manager);
 //            }else if(R.id.nav_checkin_checkout_vehicle == id1){
 //                navController.navigate(R.id.action_nav_home_to_nav_checkin_checkout_vehicle);
