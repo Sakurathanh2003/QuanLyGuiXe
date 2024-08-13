@@ -92,13 +92,13 @@ public class ParkingLotsFragment extends BaseFragment<FragmentParkingLotsBinding
                         "Bạn có muốn xóa nhà xe này không?",
                         () -> {
                             parkingLotViewModel.deleteItem(item);
-                            List<ParkingLot> ticketsList = new ArrayList<>(parkingLotAdapter.getCurrentList());
-                            ticketsList.remove(item);
-                            parkingLotAdapter.submitList(ticketsList);
+                            List<ParkingLot> parkingLotList = new ArrayList<>(parkingLotAdapter.getCurrentList());
+                            parkingLotList.remove(item);
+                            parkingLotAdapter.submitList(parkingLotList);
                             parkingLotAdapter.notifyItemRemoved(position);
 
                             Toast.makeText(getContext(), "Xóa nhà xe xe thành công", Toast.LENGTH_SHORT).show();
-                            if (ticketsList.size() == 0) {
+                            if (parkingLotList.size() == 0) {
                                 viewBinding.recyclerViewParkingLots.setVisibility(View.GONE);
                                 viewBinding.textEmptyParkingLot.setVisibility(View.VISIBLE);
                             }
