@@ -8,9 +8,13 @@ import com.example.quanlyguixe.R;
 import com.example.quanlyguixe.databinding.FragmentHomeBinding;
 import com.example.quanlyguixe.util.base.BaseFragment;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     private HomeViewModel homeViewModel;
     private HomeAdapter homeAdapter;
+
     @Override
     public FragmentHomeBinding inflateViewBinding(LayoutInflater inflater) {
         return FragmentHomeBinding.inflate(inflater);
