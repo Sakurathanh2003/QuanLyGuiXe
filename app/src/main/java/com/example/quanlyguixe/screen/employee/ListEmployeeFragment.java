@@ -1,17 +1,15 @@
 package com.example.quanlyguixe.screen.employee;
 
 import android.os.Bundle;
-
+import android.view.LayoutInflater;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.quanlyguixe.R;
 import com.example.quanlyguixe.data.model.Employees;
@@ -25,7 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class ListEmployeeFragment extends BaseFragment<FragmentListEmployeeBinding> {
 
     private EmployeeViewModel employeeViewModel;
@@ -48,10 +48,22 @@ public class ListEmployeeFragment extends BaseFragment<FragmentListEmployeeBindi
         employeeViewModel.getAllEmployees();
     }
 
+    private void replaceFragment(Fragment fragment, Bundle data) {
+        if (data != null) {
+            fragment.setArguments(data);
+        }
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
     @Override
     protected void addEvent() {
         viewBinding.buttonAddEmployee.setOnClickListener(view -> {
-//            navController.navigate(R.id.action_nav_list_employee_to_nav_add_update_employee);
+            viewBinding.recyclerViewEmployees.setVisibility(RecyclerView.GONE);
+            replaceFragment(new AddUpdateEmployeeFragment(), null);
         });
 
         viewBinding.recyclerViewEmployees.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -79,8 +91,8 @@ public class ListEmployeeFragment extends BaseFragment<FragmentListEmployeeBindi
                             Bundle bundle = new Bundle();
                             bundle.putBoolean(Constant.KEY_BUNDLE_IS_UPDATE, true);
                             bundle.putParcelable(Constant.KEY_BUNDLE_EMPLOYEE, item);
-//                            navController.navigate(
-//                                    R.id.action_nav_list_employee_to_nav_add_update_employee, bundle);
+                            viewBinding.recyclerViewEmployees.setVisibility(RecyclerView.GONE);
+                            replaceFragment(new AddUpdateEmployeeFragment(), bundle);
                         }).show();
             }
 
