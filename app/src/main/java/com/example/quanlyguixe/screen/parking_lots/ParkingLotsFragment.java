@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,9 +80,8 @@ public class ParkingLotsFragment extends BaseFragment<FragmentParkingLotsBinding
                         () -> {
                             Bundle bundle = new Bundle();
                             bundle.putBoolean(Constant.KEY_BUNDLE_IS_UPDATE, true);
-                            bundle.putParcelable(Constant.KEY_BUNDLE_TICKET, item);
-                            navController.navigate(
-                                    R.id.action_nav_list_parking_lots_to_nav_add_update_parking_slot, bundle);
+                            bundle.putParcelable(Constant.KEY_BUNDLE_PARKING_LOT, item);
+                            navController.navigate(R.id.action_nav_list_parking_lots_to_nav_add_update_parking_slot, bundle);
                         }).show();
             }
 
@@ -109,15 +109,18 @@ public class ParkingLotsFragment extends BaseFragment<FragmentParkingLotsBinding
 
     @Override
     protected void bindToViewModel() {
-        parkingLotViewModel.getParkingLots().observe(getViewLifecycleOwner(), parkingLots -> {
-            parkingLotAdapter.submitList(parkingLots);
-            // Hiển thị thông báo khi danh sách rỗng
-            if (parkingLots.isEmpty()) {
-                viewBinding.recyclerViewParkingLots.setVisibility(View.GONE);
-                viewBinding.textEmptyParkingLot.setVisibility(View.VISIBLE);
-            } else {
-                viewBinding.recyclerViewParkingLots.setVisibility(View.VISIBLE);
-                viewBinding.textEmptyParkingLot.setVisibility(View.GONE);
+        parkingLotViewModel.getParkingLots().observe(getViewLifecycleOwner(), new Observer<List<ParkingLot>>() {
+            @Override
+            public void onChanged(List<ParkingLot> parkingLots) {
+                parkingLotAdapter.submitList(parkingLots);
+
+                if (parkingLots.isEmpty()) {
+                    viewBinding.recyclerViewParkingLots.setVisibility(View.GONE);
+                    viewBinding.textEmptyParkingLot.setVisibility(View.VISIBLE);
+                } else {
+                    viewBinding.recyclerViewParkingLots.setVisibility(View.VISIBLE);
+                    viewBinding.textEmptyParkingLot.setVisibility(View.GONE);
+                }
             }
         });
     }

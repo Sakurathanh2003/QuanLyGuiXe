@@ -15,6 +15,7 @@ import com.example.quanlyguixe.util.Constant;
 import com.example.quanlyguixe.util.Validator;
 import com.example.quanlyguixe.util.base.BaseFragment;
 import com.example.quanlyguixe.util.dialog.AlertDialogFactory;
+import com.example.quanlyguixe.util.interfaces.IUpdateDeleteListener;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,14 +26,10 @@ import javax.inject.Inject;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class AddUpdateParkingLotFragment
-        extends BaseFragment<FragmentAddUpdateParkingLotsBinding> {
+public class AddUpdateParkingLotFragment extends BaseFragment<FragmentAddUpdateParkingLotsBinding> {
 
     private ParkingLotViewModel parkingLotViewModel;
-
-
     private boolean isUpdate = false;
-
     private ParkingLot parkinglots = null;
 
     @Inject
@@ -55,16 +52,13 @@ public class AddUpdateParkingLotFragment
         MainActivity mainActivity = (MainActivity) getActivity();
 
         if (isUpdate && parkinglots != null) {
-            Objects.requireNonNull(mainActivity).updateTitleToolBar("Cập nhật nhà xe");
-
+            Objects.requireNonNull(mainActivity).updateTitleToolBar("Cập nhật nhà xe");
             viewBinding.buttonAddParkingLot.setVisibility(View.GONE);
             viewBinding.buttonUpdateParkingLot.setVisibility(View.VISIBLE);
-
             viewBinding.textInputParkingLotName.getEditText().setText(parkinglots.getName());
             viewBinding.textInputParkingSlotMax.getEditText().setText(String.valueOf(parkinglots.getSlotMax()));
         } else {
-            Objects.requireNonNull(mainActivity).updateTitleToolBar("Thêm nhà xe");
-
+            Objects.requireNonNull(mainActivity).updateTitleToolBar("Thêm nhà xe");
             viewBinding.buttonAddParkingLot.setVisibility(View.VISIBLE);
             viewBinding.buttonUpdateParkingLot.setVisibility(View.GONE);
         }
@@ -72,65 +66,55 @@ public class AddUpdateParkingLotFragment
 
     @Override
     protected void addEvent() {
-        viewBinding.buttonClearAllInfo.setOnClickListener(view -> {
-            AlertDialogFactory.createClearAllInfoDialog(getContext(), () -> {
-                viewBinding.textInputParkingLotName.getEditText().setText("");
-                viewBinding.textInputParkingSlotMax.getEditText().setText("");
+        viewBinding.buttonClearAllInfo.setOnClickListener(view -> clearAllInputs());
+        viewBinding.buttonAddParkingLot.setOnClickListener(view -> handleAddOrUpdateParkingLot(false));
+        viewBinding.buttonUpdateParkingLot.setOnClickListener(view -> handleAddOrUpdateParkingLot(true));
 
-                viewBinding.textInputParkingLotName.getEditText().requestFocus();
+        handleFocusChangeForEditText(viewBinding.textInputParkingLotName.getEditText(), "Vui lòng nhập tên nhà xe");
+        handleFocusChangeForEditText(viewBinding.textInputParkingSlotMax.getEditText(), "Vui lòng nhập số vị trí tối đa");
+    }
 
-                Toast.makeText(getContext(), "Xóa dữ liệu thành công", Toast.LENGTH_SHORT).show();
-            }).show();
-        });
+    private void clearAllInputs() {
+        AlertDialogFactory.createClearAllInfoDialog(getContext(), () -> {
+            viewBinding.textInputParkingLotName.getEditText().setText("");
+            viewBinding.textInputParkingSlotMax.getEditText().setText("");
+            viewBinding.textInputParkingLotName.getEditText().requestFocus();
+            Toast.makeText(getContext(), "Xóa dữ liệu thành công", Toast.LENGTH_SHORT).show();
+        }).show();
+    }
 
+    private void handleAddOrUpdateParkingLot(boolean isUpdate) {
+        List<EditText> editTexts = Arrays.asList(
+                viewBinding.textInputParkingLotName.getEditText(),
+                viewBinding.textInputParkingSlotMax.getEditText()
+        );
 
-        viewBinding.buttonAddParkingLot.setOnClickListener(view -> {
-            List<EditText> editTexts = Arrays.asList(
-                    viewBinding.textInputParkingLotName.getEditText(),
-                    viewBinding.textInputParkingSlotMax.getEditText()
-            );
+        if (editTexts.stream().anyMatch(Validator::isEmptyEditText)) {
+            Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            if (editTexts.stream().anyMatch(Validator::isEmptyEditText)) {
-                Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-            } else {
-                ParkingLot newParkingLots = new ParkingLot();
-                Long amount = Long.valueOf(viewBinding.textInputParkingSlotMax.getEditText().getText().toString());
-                newParkingLots.setId(0);
-                newParkingLots.setName(viewBinding.textInputParkingLotName.getEditText().getText().toString());
-                newParkingLots.setAvailabelSlot(amount);
-                newParkingLots.setSlotMax(amount);
+        Long slotMax = Long.valueOf(viewBinding.textInputParkingSlotMax.getEditText().getText().toString());
 
-                parkingLotViewModel.insertItem(newParkingLots);
-            }
-        });
+        if (isUpdate && parkinglots != null) {
+            parkinglots.setName(viewBinding.textInputParkingLotName.getEditText().getText().toString());
+            parkinglots.setSlotMax(slotMax);
+            parkingLotViewModel.updateItem(parkinglots);
+        } else {
+            ParkingLot newParkingLot = new ParkingLot();
+            newParkingLot.setId(0); // Set ID as 0 or any default value
+            newParkingLot.setName(viewBinding.textInputParkingLotName.getEditText().getText().toString());
+            newParkingLot.setAvailabelSlot(slotMax);
+            newParkingLot.setSlotMax(slotMax);
+            parkingLotViewModel.insertItem(newParkingLot);
+        }
+    }
 
-        viewBinding.buttonUpdateParkingLot.setOnClickListener(view -> {
-            List<EditText> editTexts = Arrays.asList(
-                    viewBinding.textInputParkingLotName.getEditText(),
-                    viewBinding.textInputParkingSlotMax.getEditText()
-            );
-
-            if (editTexts.stream().anyMatch(Validator::isEmptyEditText)) {
-                Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-            } else {
-                parkinglots.setName(viewBinding.textInputParkingLotName.getEditText().getText().toString());
-                parkinglots.setSlotMax(Long.valueOf(viewBinding.textInputParkingSlotMax.getEditText().getText().toString()));
-
-                parkingLotViewModel.updateItem(parkinglots);
-            }
-        });
-
-        viewBinding.textInputParkingLotName.setOnFocusChangeListener((view, isFocus) -> {
+    private void handleFocusChangeForEditText(EditText editText, String helperText) {
+        editText.setOnFocusChangeListener((view, isFocus) -> {
             if (!isFocus) {
-                boolean isEmpty = viewBinding.textInputParkingLotName.getEditText().getText().toString().isEmpty();
-                viewBinding.textInputParkingLotName.setHelperText(isEmpty ? "Vui lòng nhập tên nhà xe" : null);
-            }
-        });
-
-        viewBinding.textInputParkingSlotMax.setOnFocusChangeListener((view, isFocus) -> {
-            if (!isFocus) {
-                boolean isEmpty = viewBinding.textInputParkingSlotMax.getEditText().getText().toString().isEmpty();
-                viewBinding.textInputParkingSlotMax.setHelperText(isEmpty ? "Vui lòng nhập số vị trí tối đa" : null);
+                boolean isEmpty = editText.getText().toString().isEmpty();
+                editText.setError(isEmpty ? helperText : null);
             }
         });
     }
@@ -141,8 +125,8 @@ public class AddUpdateParkingLotFragment
             Toast.makeText(getContext(), hasError, Toast.LENGTH_SHORT).show();
         });
 
-        parkingLotViewModel.getBackToPreviousScreen().observe(getViewLifecycleOwner(), backToPreviousScreen -> {
-            if (backToPreviousScreen) {
+        parkingLotViewModel.getBackToPreviousScreen().observe(getViewLifecycleOwner(), event -> {
+            if (event) {
                 String displayText = isUpdate ? "Sửa dữ liệu thành công" : "Thêm dữ liệu thành công";
                 Toast.makeText(getContext(), displayText, Toast.LENGTH_SHORT).show();
                 navController.navigateUp();
@@ -151,9 +135,9 @@ public class AddUpdateParkingLotFragment
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroyView() {
         parkingLotViewModel.resetBackToPreviousScreenState();
         parkinglots = null;
-        super.onDestroy();
+        super.onDestroyView();
     }
 }

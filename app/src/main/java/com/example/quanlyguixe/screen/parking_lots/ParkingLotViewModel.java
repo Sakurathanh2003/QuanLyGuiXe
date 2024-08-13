@@ -16,9 +16,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class ParkingLotViewModel extends BaseViewModel {
 
-    private final MutableLiveData<List<ParkingLot>> _parkinglots = new MutableLiveData<>();
+    private final MutableLiveData<List<ParkingLot>> parkinglots = new MutableLiveData<>();
+
     public LiveData<List<ParkingLot>> getParkingLots() {
-        return _parkinglots;
+        return parkinglots;
     }
 
     private final ParkingLotRepository parkingLotRepository;
@@ -36,7 +37,7 @@ public class ParkingLotViewModel extends BaseViewModel {
                         new IResultListener<List<ParkingLot>>() {
                             @Override
                             public void onSuccess(List<ParkingLot> data) {
-                                _parkinglots.setValue(data);
+                                parkinglots.setValue(data);
                             }
 
                             @Override
@@ -70,8 +71,7 @@ public class ParkingLotViewModel extends BaseViewModel {
     public void updateItem(ParkingLot item) {
         registerDisposable(
                 executeTaskWithLoading(
-                        parkingLotRepository.updateItem(item),
-                        new IResultListener<Integer>() {
+                        parkingLotRepository.updateItem(item), new IResultListener<Integer>() {
                             @Override
                             public void onSuccess(Integer data) {
                                 _backToPreviousScreen.setValue(true);
@@ -93,6 +93,7 @@ public class ParkingLotViewModel extends BaseViewModel {
                         new IResultListener<Integer>() {
                             @Override
                             public void onSuccess(Integer data) {
+                                getAllParkingLots();
                             }
 
                             @Override
