@@ -37,7 +37,14 @@
         android:id="@+id/checkInOutVehicleFragment"
         android:name="com.example.quanlyguixe.screen.check_in_out_vehicle.CheckInOutVehicleFragment"
         android:label="fragment_check_in_out_vehicle"
-        tools:layout="@layout/fragment_check_in_out_vehicle" />
+        tools:layout="@layout/fragment_check_in_out_vehicle" >
+        <action
+            android:id="@+id/action_checkInOutVehicleFragment_to_checkOutVehicleFragment"
+            app:destination="@id/checkOutVehicleFragment" />
+        <action
+            android:id="@+id/action_checkInOutVehicleFragment_to_checkInVehicleFragment"
+            app:destination="@id/checkInVehicleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/parkingLotsFragment"
         android:name="com.example.quanlyguixe.screen.parking_lots.ParkingLotsFragment"
@@ -58,6 +65,16 @@
         android:name="com.example.quanlyguixe.screen.tickets.TicketsFragment"
         android:label="fragment_tickets"
         tools:layout="@layout/fragment_tickets" />
+    <fragment
+        android:id="@+id/checkInVehicleFragment"
+        android:name="com.example.quanlyguixe.screen.check_in_out_vehicle.CheckInVehicleFragment"
+        android:label="fragment_check_in_vehicle"
+        tools:layout="@layout/fragment_check_in_vehicle" />
+    <fragment
+        android:id="@+id/checkOutVehicleFragment"
+        android:name="com.example.quanlyguixe.screen.check_in_out_vehicle.CheckOutVehicleFragment"
+        android:label="fragment_check_out_vehicle"
+        tools:layout="@layout/fragment_check_out_vehicle" />
 
     <fragment
         android:id="@+id/nav_add_update_parking_slot"
