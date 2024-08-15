@@ -49,7 +49,12 @@
         android:id="@+id/parkingLotsFragment"
         android:name="com.example.quanlyguixe.screen.parking_lots.ParkingLotsFragment"
         android:label="fragment_parking_lots"
-        tools:layout="@layout/fragment_parking_lots" />
+        tools:layout="@layout/fragment_parking_lots">
+        <action
+            android:id="@+id/action_nav_list_parking_lots_to_nav_add_update_parking_slot"
+            app:destination="@id/nav_add_update_parking_slot" />
+    </fragment>
+
     <fragment
         android:id="@+id/revenueReportFragment"
         android:name="com.example.quanlyguixe.screen.revenue_report.RevenueReportFragment"
@@ -71,5 +76,10 @@
         android:label="fragment_check_out_vehicle"
         tools:layout="@layout/fragment_check_out_vehicle" />
 
+    <fragment
+        android:id="@+id/nav_add_update_parking_slot"
+        android:name="com.example.quanlyguixe.screen.parking_lots.AddUpdateParkingLotFragment"
+        tools:layout="@layout/fragment_add_update_parking_lots"
+        android:label="Thêm nhà xe" />
 
 </navigation>

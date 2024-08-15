@@ -1,43 +1,43 @@
-package com.example.quanlyguixe.screen.employee;
+package com.example.quanlyguixe.screen.parking_lots;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.quanlyguixe.data.model.Employees;
-import com.example.quanlyguixe.data.repo.EmployeeRepository;
+import com.example.quanlyguixe.data.model.ParkingLot;
+import com.example.quanlyguixe.data.repo.ParkingLotRepository;
+import com.example.quanlyguixe.di.feature.parkinglot.ParkingLotFeatureModule;
 import com.example.quanlyguixe.util.base.BaseViewModel;
 import com.example.quanlyguixe.util.interfaces.IResultListener;
 
 import java.util.List;
-
 import javax.inject.Inject;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
-public class EmployeeViewModel extends BaseViewModel {
-    private final EmployeeRepository employeeRepository;
+public class ParkingLotViewModel extends BaseViewModel {
 
-    private final MutableLiveData<List<Employees>> _employees = new MutableLiveData<>();
+    private final MutableLiveData<List<ParkingLot>> parkinglots = new MutableLiveData<>();
 
-    public LiveData<List<Employees>> getEmployees() {
-        return _employees;
+    public LiveData<List<ParkingLot>> getParkingLots() {
+        return parkinglots;
     }
+
+    private final ParkingLotRepository parkingLotRepository;
 
     @Inject
-    public EmployeeViewModel(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-
-        getAllEmployees();
+    public ParkingLotViewModel(ParkingLotRepository parkingLotRepository) {
+        this.parkingLotRepository = parkingLotRepository;
+        getAllParkingLots();
     }
 
-    public void getAllEmployees() {
+    public void getAllParkingLots() {
         registerDisposable(
                 executeTaskWithLoading(
-                        employeeRepository.getAllEmployees(),
-                        new IResultListener<List<Employees>>() {
+                        parkingLotRepository.getAll(),
+                        new IResultListener<List<ParkingLot>>() {
                             @Override
-                            public void onSuccess(List<Employees> data) {
-                                _employees.setValue(data);
+                            public void onSuccess(List<ParkingLot> data) {
+                                parkinglots.setValue(data);
                             }
 
                             @Override
@@ -49,10 +49,10 @@ public class EmployeeViewModel extends BaseViewModel {
         );
     }
 
-    public void insertEmployee(Employees employees) {
+    public void insertItem(ParkingLot item) {
         registerDisposable(
                 executeTaskWithLoading(
-                        employeeRepository.insertEmployee(employees),
+                        parkingLotRepository.insertItem(item),
                         new IResultListener<Long>() {
                             @Override
                             public void onSuccess(Long data) {
@@ -61,18 +61,17 @@ public class EmployeeViewModel extends BaseViewModel {
 
                             @Override
                             public void onError(Throwable throwable) {
-                                error.postValue(throwable.getMessage());
+                                error.setValue(throwable.getMessage());
                             }
                         }
                 )
         );
     }
 
-    public void updateEmployee(Employees employees) {
+    public void updateItem(ParkingLot item) {
         registerDisposable(
                 executeTaskWithLoading(
-                        employeeRepository.updateEmployee(employees),
-                        new IResultListener<Integer>() {
+                        parkingLotRepository.updateItem(item), new IResultListener<Integer>() {
                             @Override
                             public void onSuccess(Integer data) {
                                 _backToPreviousScreen.setValue(true);
@@ -80,26 +79,26 @@ public class EmployeeViewModel extends BaseViewModel {
 
                             @Override
                             public void onError(Throwable throwable) {
-                                error.postValue(throwable.getMessage());
+                                error.setValue(throwable.getMessage());
                             }
                         }
                 )
         );
     }
 
-    public void deleteEmployee(Employees employees) {
+    public void deleteItem(ParkingLot item) {
         registerDisposable(
                 executeTaskWithLoading(
-                        employeeRepository.deleteEmployee(employees),
+                        parkingLotRepository.deleteItem(item),
                         new IResultListener<Integer>() {
                             @Override
                             public void onSuccess(Integer data) {
-
+                                getAllParkingLots();
                             }
 
                             @Override
                             public void onError(Throwable throwable) {
-                                error.postValue(throwable.getMessage());
+                                error.setValue(throwable.getMessage());
                             }
                         }
                 )
