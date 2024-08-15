@@ -15,6 +15,9 @@ import com.example.quanlyguixe.util.base.BaseFragment;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class CheckInOutVehicleFragment extends BaseFragment<FragmentCheckInOutVehicleBinding> {
     @Inject
     NavController navController;

@@ -16,6 +16,10 @@ import com.example.quanlyguixe.databinding.ActivityMainBinding;
 import com.example.quanlyguixe.util.base.BaseActivity;
 import com.google.android.material.navigation.NavigationView;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
+
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     private AppBarConfiguration mAppBarConfiguration;
