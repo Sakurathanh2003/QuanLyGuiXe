@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/checkInOutVehicleFragment"
         android:name="com.example.quanlyguixe.screen.check_in_out_vehicle.CheckInOutVehicleFragment"
-        android:label="fragment_check_in_out_vehicle"
+        android:label="Vé xe vào / ra"
         tools:layout="@layout/fragment_check_in_out_vehicle" >
         <action
             android:id="@+id/action_checkInOutVehicleFragment_to_checkOutVehicleFragment"
@@ -78,12 +78,12 @@
     <fragment
         android:id="@+id/checkInVehicleFragment"
         android:name="com.example.quanlyguixe.screen.check_in_out_vehicle.CheckInVehicleFragment"
-        android:label="Vé xe ra / vào"
+        android:label="Vé xe vào"
         tools:layout="@layout/fragment_check_in_vehicle" />
     <fragment
         android:id="@+id/checkOutVehicleFragment"
         android:name="com.example.quanlyguixe.screen.check_in_out_vehicle.CheckOutVehicleFragment"
-        android:label="fragment_check_out_vehicle"
+        android:label="Vé xe ra"
         tools:layout="@layout/fragment_check_out_vehicle" />
 
     <fragment
