@@ -48,7 +48,7 @@
     <fragment
         android:id="@+id/parkingLotsFragment"
         android:name="com.example.quanlyguixe.screen.parking_lots.ParkingLotsFragment"
-        android:label="fragment_parking_lots"
+        android:label="Bãi đỗ xe"
         tools:layout="@layout/fragment_parking_lots">
         <action
             android:id="@+id/action_nav_list_parking_lots_to_nav_add_update_parking_slot"
@@ -58,7 +58,7 @@
     <fragment
         android:id="@+id/revenueReportFragment"
         android:name="com.example.quanlyguixe.screen.revenue_report.RevenueReportFragment"
-        android:label="fragment_revenue_report"
+        android:label="Báo cáo doanh thu"
         tools:layout="@layout/fragment_revenue_report" />
     <fragment
         android:id="@+id/nav_add_update_tickets"
@@ -78,7 +78,7 @@
     <fragment
         android:id="@+id/checkInVehicleFragment"
         android:name="com.example.quanlyguixe.screen.check_in_out_vehicle.CheckInVehicleFragment"
-        android:label="fragment_check_in_vehicle"
+        android:label="Vé xe ra / vào"
         tools:layout="@layout/fragment_check_in_vehicle" />
     <fragment
         android:id="@+id/checkOutVehicleFragment"

@@ -40,8 +40,8 @@ public class ParkingLotAdapter extends BaseRecyclerViewAdapter<ParkingLot, ItemP
         @Override
         public void bindItem(ParkingLot item) {
             super.bindItem(item);
-            Resources resources = viewBinding.getRoot().getContext().getResources();
 
+            Resources resources = viewBinding.getRoot().getContext().getResources();
             viewBinding.textParkingLotId.setText(resources.getString(R.string.text_temp_parking_lot_id, item.getId()));
             viewBinding.textParkingLotName.setText(resources.getString(R.string.text_temp_parking_lot_name, item.getName()));
             viewBinding.textParkingSlotAvailable.setText(resources.getString(R.string.text_temp_parking_slot_available, item.getAvailabelSlot()));

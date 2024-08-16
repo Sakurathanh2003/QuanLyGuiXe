@@ -94,8 +94,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
             int id = item.getItemId();
 
-
-
             if (id == R.id.nav_check_in_out_vehicle_title) {
                 navController.navigate(R.id.action_nav_home_to_checkInOutVehicleFragment);
             } else if (id == R.id.nav_reports_detail) {
