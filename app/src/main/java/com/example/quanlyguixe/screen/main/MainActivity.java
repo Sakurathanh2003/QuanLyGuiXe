@@ -101,7 +101,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             } else if (id == R.id.nav_reports_detail) {
                 navController.navigate(R.id.action_nav_home_to_revenueReportFragment);
             } else if (id == R.id.nav_list_tickets) {
-                navController.navigate(R.id.action_nav_home_to_ticketsFragment);
+                navController.navigate(R.id.action_nav_home_to_nav_list_tickets);
             } else if (id == R.id.nav_list_employee){
                 navController.navigate(R.id.action_nav_home_to_nav_list_employee);
             } else if (id == R.id.nav_list_parking_lots){
