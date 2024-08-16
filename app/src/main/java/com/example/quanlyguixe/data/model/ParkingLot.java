@@ -45,7 +45,7 @@ public class ParkingLot implements Parcelable {
 
             @Override
             public boolean areContentsTheSame(@NonNull ParkingLot oldItem, @NonNull ParkingLot newItem) {
-                return oldItem.equals(newItem);
+                return oldItem.equals(newItem) && oldItem.slotMax == newItem.slotMax;
             }
         };
     }
