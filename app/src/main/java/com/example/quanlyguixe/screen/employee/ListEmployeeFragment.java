@@ -48,17 +48,6 @@ public class ListEmployeeFragment extends BaseFragment<FragmentListEmployeeBindi
         employeeViewModel.getAllEmployees();
     }
 
-    private void replaceFragment(Fragment fragment, Bundle data) {
-        if (data != null) {
-            fragment.setArguments(data);
-        }
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
-
     @Override
     protected void addEvent() {
 //        viewBinding.buttonAddEmployee.setOnClickListener(view -> {
