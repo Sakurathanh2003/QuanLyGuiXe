@@ -22,6 +22,4 @@ public abstract class BaseRecyclerViewAdapter<T, VB extends ViewBinding, VH exte
             holder.bindItem(getItem(position));
         }
     }
-
-
 }

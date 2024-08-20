@@ -20,8 +20,8 @@
             android:id="@+id/action_nav_home_to_revenueReportFragment"
             app:destination="@id/revenueReportFragment" />
         <action
-            android:id="@+id/action_nav_home_to_ticketsFragment"
-            app:destination="@id/ticketsFragment" />
+            android:id="@+id/action_nav_home_to_nav_list_tickets"
+            app:destination="@id/nav_list_tickets" />
         <action
             android:id="@+id/action_nav_home_to_parkingLotsFragment"
             app:destination="@id/parkingLotsFragment" />
@@ -32,7 +32,15 @@
         android:name="com.example.quanlyguixe.screen.employee.ListEmployeeFragment"
         android:label="@string/nav_list_employee_title"
         tools:layout="@layout/fragment_list_employee" >
+        <action
+            android:id="@+id/action_nav_list_employee_to_nav_add_update_employee"
+            app:destination="@id/nav_add_update_employee" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_add_update_employee"
+        android:name="com.example.quanlyguixe.screen.employee.AddUpdateEmployeeFragment"
+        tools:layout="@layout/fragment_add_update_employee"
+        android:label="Thêm nhân viên" />
     <fragment
         android:id="@+id/checkInOutVehicleFragment"
         android:name="com.example.quanlyguixe.screen.check_in_out_vehicle.CheckInOutVehicleFragment"
@@ -48,7 +56,7 @@
     <fragment
         android:id="@+id/parkingLotsFragment"
         android:name="com.example.quanlyguixe.screen.parking_lots.ParkingLotsFragment"
-        android:label="fragment_parking_lots"
+        android:label="Bãi đỗ xe"
         tools:layout="@layout/fragment_parking_lots">
         <action
             android:id="@+id/action_nav_list_parking_lots_to_nav_add_update_parking_slot"
@@ -58,16 +66,27 @@
     <fragment
         android:id="@+id/revenueReportFragment"
         android:name="com.example.quanlyguixe.screen.revenue_report.RevenueReportFragment"
-        android:label="fragment_revenue_report"
+        android:label="Báo cáo doanh thu"
         tools:layout="@layout/fragment_revenue_report" />
     <fragment
-        android:id="@+id/ticketsFragment"
-        android:name="com.example.quanlyguixe.screen.tickets.TicketsFragment"
-        android:label="fragment_tickets"
-        tools:layout="@layout/fragment_tickets" />
+        android:id="@+id/nav_add_update_tickets"
+        android:name="com.example.quanlyguixe.screen.tickets.AddUpdateTicketFragment"
+        tools:layout="@layout/fragment_add_update_ticket"
+        android:label="Thêm vé xe" />
+    <fragment
+        android:id="@+id/nav_list_tickets"
+        android:name="com.example.quanlyguixe.screen.tickets.ListTicketFragment"
+        android:label="@string/nav_list_ticket_title"
+        tools:layout="@layout/fragment_list_tickets" >
+
+        <action
+            android:id="@+id/action_nav_list_tickets_to_nav_add_update_tickets"
+            app:destination="@id/nav_add_update_tickets" />
+    </fragment>
     <fragment
         android:id="@+id/checkInVehicleFragment"
         android:name="com.example.quanlyguixe.screen.check_in_out_vehicle.CheckInVehicleFragment"
+
         android:label="Xe vào"
         tools:layout="@layout/fragment_check_in_vehicle" />
     <fragment

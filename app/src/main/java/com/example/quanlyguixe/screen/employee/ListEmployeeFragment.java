@@ -48,22 +48,15 @@ public class ListEmployeeFragment extends BaseFragment<FragmentListEmployeeBindi
         employeeViewModel.getAllEmployees();
     }
 
-    private void replaceFragment(Fragment fragment, Bundle data) {
-        if (data != null) {
-            fragment.setArguments(data);
-        }
-        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
-
     @Override
     protected void addEvent() {
+//        viewBinding.buttonAddEmployee.setOnClickListener(view -> {
+//            viewBinding.recyclerViewEmployees.setVisibility(RecyclerView.GONE);
+//            replaceFragment(new AddUpdateEmployeeFragment(), null);
+//        });
+
         viewBinding.buttonAddEmployee.setOnClickListener(view -> {
-            viewBinding.recyclerViewEmployees.setVisibility(RecyclerView.GONE);
-            replaceFragment(new AddUpdateEmployeeFragment(), null);
+            navController.navigate(R.id.action_nav_list_employee_to_nav_add_update_employee);
         });
 
         viewBinding.recyclerViewEmployees.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -91,8 +84,10 @@ public class ListEmployeeFragment extends BaseFragment<FragmentListEmployeeBindi
                             Bundle bundle = new Bundle();
                             bundle.putBoolean(Constant.KEY_BUNDLE_IS_UPDATE, true);
                             bundle.putParcelable(Constant.KEY_BUNDLE_EMPLOYEE, item);
-                            viewBinding.recyclerViewEmployees.setVisibility(RecyclerView.GONE);
-                            replaceFragment(new AddUpdateEmployeeFragment(), bundle);
+//                            viewBinding.recyclerViewEmployees.setVisibility(RecyclerView.GONE);
+//                            replaceFragment(new AddUpdateEmployeeFragment(), bundle);
+                            navController.navigate(
+                                    R.id.action_nav_list_employee_to_nav_add_update_employee, bundle);
                         }).show();
             }
 

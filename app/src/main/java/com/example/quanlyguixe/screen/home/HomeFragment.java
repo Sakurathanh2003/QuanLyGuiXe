@@ -39,7 +39,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
                     navController.navigate(R.id.action_nav_home_to_revenueReportFragment);
                     break;
                 case TICKET_SCREEN:
-                    navController.navigate(R.id.action_nav_home_to_ticketsFragment);
+                    navController.navigate(R.id.action_nav_home_to_nav_list_tickets);
                     break;
                 case EMPLOYEE_SCREEN:
                     navController.navigate(R.id.action_nav_home_to_nav_list_employee);

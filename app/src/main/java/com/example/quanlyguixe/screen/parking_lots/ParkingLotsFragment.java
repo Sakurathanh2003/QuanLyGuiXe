@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import com.example.quanlyguixe.R;
 import com.example.quanlyguixe.data.model.ParkingLot;
 import com.example.quanlyguixe.databinding.FragmentParkingLotsBinding;
+import com.example.quanlyguixe.screen.main.MainActivity;
 import com.example.quanlyguixe.util.Constant;
 import com.example.quanlyguixe.util.base.BaseFragment;
 import com.example.quanlyguixe.util.dialog.AlertDialogFactory;
@@ -24,6 +27,7 @@ import com.example.quanlyguixe.util.interfaces.IUpdateDeleteListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
